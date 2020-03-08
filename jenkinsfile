@@ -1,29 +1,13 @@
 node {
- try  {
- notify('Job Started') 
 
-     
   stage('Git-Checkout') {
    git 'https://github.com/AbhishekPattnaik04/COENodejs.git'
   }
-      
- dir(project_path) {
   stage('ansible deploy'){
   sh label: 'ansible', script: ' ansible-playbook -i inventory playbook.yml -u abhishek'
-}  
-}
-notify('Job Completed')   
-} catch (err) {
-  notify("Error ${err}")
-  currentBuild.result = 'FAILURE'
 }
 }
 
-def notify(status){
-    emailext (
-	to: "pattnaikabhishek1996@gmail.com",
-	subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-	 body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-	<p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
-		)
-	}
+
+
+
