@@ -4,12 +4,12 @@ node {
 
      
   stage('Git-Checkout') {
-   git 'https://github.com/AbhishekPattnaik04/capstone301-B.git'
+   git 'https://github.com/AbhishekPattnaik04/COENodejs.git'
   }
       
  dir(project_path) {
   stage('ansible deploy'){
-  sh label: 'terraform', script: 'ansible-playbook -i /var/lib/jenkins/workspace/capstoneTerraform/terraform/jenkins-ci.ini -u ubuntu --key /var/lib/jenkins/.ssh/capstone301 web-playbook.yaml -vvvv'
+  sh label: 'terraform', script: ' ansible-playbook -i inventory playbook.yml -u abhishek'
 }  
 }
 notify('Job Completed')   
