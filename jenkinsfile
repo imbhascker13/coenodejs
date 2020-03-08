@@ -9,7 +9,7 @@ node {
       
  dir(project_path) {
   stage('ansible deploy'){
-  sh label: 'terraform', script: ' ansible-playbook -i inventory playbook.yml -u abhishek'
+  sh label: 'ansible', script: ' ansible-playbook -i inventory playbook.yml -u abhishek'
 }  
 }
 notify('Job Completed')   
