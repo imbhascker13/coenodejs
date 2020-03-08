@@ -1,0 +1,29 @@
+node {
+ try  {
+ notify('Job Started') 
+
+     
+  stage('Git-Checkout') {
+   git 'https://github.com/AbhishekPattnaik04/capstone301-B.git'
+  }
+      
+ dir(project_path) {
+  stage('ansible deploy'){
+  sh label: 'terraform', script: 'ansible-playbook -i /var/lib/jenkins/workspace/capstoneTerraform/terraform/jenkins-ci.ini -u ubuntu --key /var/lib/jenkins/.ssh/capstone301 web-playbook.yaml -vvvv'
+}  
+}
+notify('Job Completed')   
+} catch (err) {
+  notify("Error ${err}")
+  currentBuild.result = 'FAILURE'
+}
+}
+
+def notify(status){
+    emailext (
+	to: "pattnaikabhishek1996@gmail.com",
+	subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+	 body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+	<p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
+		)
+	}
