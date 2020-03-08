@@ -1,0 +1,8 @@
+---
+app_user: "abhishek"
+http_host: "nodejs-hello-world"
+http_conf: "my.conf"
+http_port: "90"
+http_port1: "91"
+http_port2: "92"
+disable_default: true
