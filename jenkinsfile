@@ -4,7 +4,7 @@ node {
    git 'https://github.com/imbhascker13/coenodejs.git'
   }
   stage('ansible deploy'){
-  sh label: 'ansible', script: ' ansible-playbook -i inventory playbook.yml -u bhascker -b'
+  sh label: 'ansible', script: ' ansible-playbook -i inventory playbook.yml -u ubuntu -b'
 }
 }
 
