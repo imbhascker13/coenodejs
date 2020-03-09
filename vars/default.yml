@@ -1,5 +1,5 @@
 ---
-app_user: "bhascker"
+app_user: "ubuntu"
 http_host: "nodejs-hello-world"
 http_conf: "my.conf"
 http_port: "90"
